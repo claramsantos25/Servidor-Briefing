@@ -13,6 +13,11 @@ const PORT = process.env.PORT || 3001;
 app.use(cors()); // Permite requisições do seu frontend
 app.use(express.json()); // Habilita o parsing de JSON no corpo das requisições
 
+// Rota de verificação (health check) para a raiz do servidor
+app.get('/', (req, res) => {
+    res.status(200).send('Servidor de briefing está no ar e pronto para receber dados!');
+});
+
 // Rota principal da API para receber o briefing
 app.post('/api/submit-briefing', async (req, res) => {
     try {
